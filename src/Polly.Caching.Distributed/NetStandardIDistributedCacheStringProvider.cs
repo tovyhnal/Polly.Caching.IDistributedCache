@@ -57,7 +57,7 @@ namespace Polly.Caching.Distributed
             cancellationToken.ThrowIfCancellationRequested();
 
             string fromCache = await _cache.GetStringAsync(key
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0_OR_GREATER || NETCOREAPP3_1_OR_GREATER
                 , cancellationToken
 #endif
                 );
@@ -78,7 +78,7 @@ namespace Polly.Caching.Distributed
             cancellationToken.ThrowIfCancellationRequested();
 
             return _cache.SetStringAsync(key, value, ttl.ToDistributedCacheEntryOptions()
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0_OR_GREATER || NETCOREAPP3_1_OR_GREATER
                 , cancellationToken
 #endif
                 );
